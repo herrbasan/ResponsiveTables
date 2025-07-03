@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Tables</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js"></script>
+    <script src="js/responsiveTables.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Responsive Tables Example</h1>
+        <button id="theme-toggle" aria-label="Toggle light/dark mode" onclick="toggleTheme()">Toggle Theme</button>
+        <button id="convert-tables" aria-label="Convert tables to grid" onclick="convertTablesToGrids('main section')">Convert Tables to Grid</button>
+    </header>
+    <main>
+        <section>
+            <h2>Table 1: Basic Data</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice</td>
+                        <td>30</td>
+                        <td>New York</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>25</td>
+                        <td>Los Angeles</td>
+                    </tr>
+                    <tr>
+                        <td>Charlie</td>
+                        <td>35</td>
+                        <td>Chicago</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 2: Four Columns with Long Text</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th class="col-15">ID</th>
+                        <th class="col-30">Description</th>
+                        <th class="col-30">Notes</th>
+                        <th class="col-15">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex.</td>
+                        <td>This is a longer note for the first row, providing more context and details about the entry.</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</td>
+                        <td>Second row note: Vivamus luctus urna sed urna ultricies ac tempor dui sagittis.</td>
+                        <td>Inactive</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus.</td>
+                        <td>Third row note: Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 3: Two Columns</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Capital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>France</td>
+                        <td>Paris</td>
+                    </tr>
+                    <tr>
+                        <td>Japan</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>Brazil</td>
+                        <td>Brasília</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 4: Four Columns</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Jane Doe</td>
+                        <td>jane@example.com</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>John Smith</td>
+                        <td>john@example.com</td>
+                        <td>Inactive</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Emily Clark</td>
+                        <td>emily@example.com</td>
+                        <td>Active</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 5: Five Columns</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1001</td>
+                        <td>Monitor</td>
+                        <td>2</td>
+                        <td>$300</td>
+                        <td>2025-07-01</td>
+                    </tr>
+                    <tr>
+                        <td>1002</td>
+                        <td>Keyboard</td>
+                        <td>1</td>
+                        <td>$50</td>
+                        <td>2025-07-02</td>
+                    </tr>
+                    <tr>
+                        <td>1003</td>
+                        <td>Mouse</td>
+                        <td>3</td>
+                        <td>$75</td>
+                        <td>2025-07-03</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 6: No Thead Example</h2>
+            <table class="responsive-table">
+                <tbody>
+                    <tr>
+                        <td>Red</td>
+                        <td>#FF0000</td>
+                    </tr>
+                    <tr>
+                        <td>Green</td>
+                        <td>#00FF00</td>
+                    </tr>
+                    <tr>
+                        <td>Blue</td>
+                        <td>#0000FF</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 7: Image Gallery with Thead</h2>
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Image 1</th>
+                        <th>Image 2</th>
+                        <th>Image 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/1/256/256" alt="Gallery 1"></td>
+                        <td><img src="https://picsum.photos/seed/2/256/256" alt="Gallery 2"></td>
+                        <td><img src="https://picsum.photos/seed/3/256/256" alt="Gallery 3"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/4/256/256" alt="Gallery 4"></td>
+                        <td><img src="https://picsum.photos/seed/5/256/256" alt="Gallery 5"></td>
+                        <td><img src="https://picsum.photos/seed/6/256/256" alt="Gallery 6"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/7/256/256" alt="Gallery 7"></td>
+                        <td><img src="https://picsum.photos/seed/8/256/256" alt="Gallery 8"></td>
+                        <td><img src="https://picsum.photos/seed/9/256/256" alt="Gallery 9"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Table 8: Image Gallery, No Thead</h2>
+            <table class="responsive-table">
+                <tbody>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/10/256/256" alt="Gallery 10"></td>
+                        <td><img src="https://picsum.photos/seed/11/256/256" alt="Gallery 11"></td>
+                        <td><img src="https://picsum.photos/seed/12/256/256" alt="Gallery 12"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/13/256/256" alt="Gallery 13"></td>
+                        <td><img src="https://picsum.photos/seed/14/256/256" alt="Gallery 14"></td>
+                        <td><img src="https://picsum.photos/seed/15/256/256" alt="Gallery 15"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://picsum.photos/seed/16/256/256" alt="Gallery 16"></td>
+                        <td><img src="https://picsum.photos/seed/17/256/256" alt="Gallery 17"></td>
+                        <td><img src="https://picsum.photos/seed/18/256/256" alt="Gallery 18"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+</main>
+    <footer>
+        <p>&copy; 2023 Responsive Tables Example</p>
+    </footer>
+</body>
+</html>

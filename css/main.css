@@ -1,0 +1,259 @@
+/* Light theme (default) */
+:root {
+  --color-bg: rgb(255, 255, 255);
+  --color-text: rgb(34, 34, 34);
+  --color-table-bg: rgb(255, 255, 255);
+  --color-table-border: rgb(204, 204, 204);
+  --color-th-bg: rgb(244, 244, 244);
+  --color-th-text: rgb(34, 34, 34);
+  --color-header-bg: linear-gradient(90deg, rgb(78, 84, 200) 0%, rgb(143, 148, 251) 100%);
+  --color-header-text: rgb(255, 255, 255);
+  --color-header-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  --color-btn-bg: rgb(240, 240, 240);
+  --color-btn-text: rgb(34, 34, 34);
+  --color-btn-border: rgb(204, 204, 204);
+  --color-btn-hover-bg: rgb(220, 220, 220);
+  --space-max-width: 60rem;
+  --space-cell-padding: 0.5rem;
+  --size-base: 1rem;
+  /* Border variables */
+  --border-width-thin: 0.0625rem;
+  --border-width: 0.125rem;
+  --border-radius: 0.25rem;
+  --border-radius-lg: 0.2rem;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: rgb(24, 26, 27);
+  --color-text: rgb(224, 224, 224);
+  --color-table-bg: rgb(35, 39, 43);
+  --color-table-border: rgb(64, 64, 64);
+  --color-th-bg: rgb(45, 49, 54);
+  --color-th-text: rgb(224, 224, 224);
+  --color-header-bg: linear-gradient(90deg, rgb(35, 39, 43) 0%, rgb(58, 63, 75) 100%);
+  --color-header-text: rgb(224, 224, 224);
+  --color-header-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  --color-btn-bg: rgb(44, 48, 54);
+  --color-btn-text: rgb(224, 224, 224);
+  --color-btn-border: rgb(70, 70, 70);
+  --color-btn-hover-bg: rgb(60, 65, 75);
+}
+
+html {
+  font-size: var(--size-base);
+  line-height: 1.5;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-table-bg);
+  color: var(--color-text);
+}
+
+th, td {
+  border: var(--border-width-thin) solid var(--color-table-border);
+  padding: var(--space-cell-padding);
+  text-align: left;
+}
+
+th {
+  background-color: var(--color-th-bg);
+  color: var(--color-th-text);
+}
+
+main {
+  padding: 1.25rem;
+}
+
+main > section {
+  max-width: var(--space-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  box-shadow: var(--color-header-shadow);
+}
+
+table tr th, table tr td {
+  width: 1%;
+}
+
+table tr > * {
+  width: calc(100% / var(--col-count, 1));
+}
+
+button {
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border: thin solid var(--color-btn-border);
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+button:hover, button:focus {
+  background: var(--color-btn-hover-bg);
+  outline: none;
+}
+
+/* Utility column width classes (5% to 100% in 5% steps) */
+.col-5 { width: 5%; }
+.col-10 { width: 10%; }
+.col-15 { width: 15%; }
+.col-20 { width: 20%; }
+.col-25 { width: 25%; }
+.col-30 { width: 30%; }
+.col-35 { width: 35%; }
+.col-40 { width: 40%; }
+.col-45 { width: 45%; }
+.col-50 { width: 50%; }
+.col-55 { width: 55%; }
+.col-60 { width: 60%; }
+.col-65 { width: 65%; }
+.col-70 { width: 70%; }
+.col-75 { width: 75%; }
+.col-80 { width: 80%; }
+.col-85 { width: 85%; }
+.col-90 { width: 90%; }
+.col-95 { width: 95%; }
+.col-100 { width: 100%; }
+
+/* Remove forced equal width for th/td and let utility classes work */
+table.responsive-table tr > * {
+  width: unset;
+}
+
+/* Responsive grid table styles */
+.responsive-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-table-bg);
+  color: var(--color-text);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.grid-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: var(--border-width-thin) solid var(--color-table-border);
+}
+.grid-row:last-child {
+  border-bottom: none;
+}
+.grid-cell {
+  flex: 1 1 0;
+  padding: 0.5rem;
+  border-right: var(--border-width-thin) solid var(--color-table-border);
+  display: flex;
+  flex-direction: column;
+}
+.grid-cell:last-child {
+  border-right: none;
+}
+.cell-label {
+  font-size: 0.6rem;
+  color: var(--color-th-text);
+  font-weight: bold;
+  margin-bottom: 0.125rem;
+}
+.cell-value {
+  font-size: 1em;
+}
+.grid-header {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-th-bg);
+  color: var(--color-th-text);
+  font-weight: bold;
+  border-bottom: var(--border-width) solid var(--color-table-border);
+}
+.grid-header-cell {
+  flex: 1 1 0;
+  padding: 0.5rem;
+  border-right: var(--border-width) solid var(--color-table-border);
+  text-align: left;
+}
+.grid-header-cell:last-child {
+  border-right: none;
+}
+.responsive-grid img,
+table.responsive-table img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
+}
+
+@media (max-width: 37.5rem) {
+  main {
+    padding: 0.75rem;
+  }
+  .responsive-grid {
+    border-radius: 0;
+    background: none;
+  }
+  .grid-header {
+    display: none;
+  }
+  .grid-row {
+    flex-direction: column;
+    border: none;
+    background: var(--color-table-bg);
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius-lg);
+    border: var(--border-width-thin) solid var(--color-table-border);
+    overflow: hidden;
+  }
+  .grid-cell {
+    border-right: none;
+    border-bottom: var(--border-width-thin) solid var(--color-table-border);
+    padding: 0.625rem 0.5rem;
+    position: relative;
+    color: var(--color-text);
+    font-size: 1.05em;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+  .grid-cell[class*="col-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+  .grid-cell:last-child {
+    border-bottom: none;
+  }
+  .grid-cell::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 500;
+    color: var(--color-th-text);
+    opacity: 0.7;
+    margin-bottom: 0.125rem;
+    font-size: 0.92em;
+  }
+  .cell-label {
+    margin-bottom: 0.25rem;
+    font-size: 1em;
+  }
+}
