@@ -1,1 +1,1 @@
-https://herrbasan.github.io/ResponsiveTables/
+Demo: https://herrbasan.github.io/ResponsiveTables/
