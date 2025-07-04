@@ -6,10 +6,20 @@ function convertTablesToGrids(containerSelector) {
   tables.forEach(table => {
     const grid = document.createElement('div');
     grid.className = 'responsive-grid';
-    // Get headers and th classes
+    // Get headers and th classes/widths
     const ths = Array.from(table.querySelectorAll('thead th'));
     const headers = ths.map(th => th.textContent);
-    const colClasses = ths.map(th => th.className || '');
+    // Get width from class (col-XX) or style/width attribute
+    const colWidths = ths.map(th => {
+      // Check for col-XX class
+      const match = th.className && th.className.match(/col-(\d{1,3})/);
+      if (match) return match[1] + '%';
+      // Check for width attribute
+      if (th.hasAttribute('width')) return th.getAttribute('width');
+      // Check for style width
+      if (th.style && th.style.width) return th.style.width;
+      return '';
+    });
     // Create header row if headers exist
     if (headers.length > 0) {
       const headerRow = document.createElement('div');
@@ -17,7 +27,11 @@ function convertTablesToGrids(containerSelector) {
       headers.forEach((header, i) => {
         const headerCell = document.createElement('div');
         headerCell.className = 'grid-header-cell';
-        if (colClasses[i]) headerCell.classList.add(...colClasses[i].split(/\s+/));
+        if (colWidths[i]) {
+          headerCell.setAttribute('data-col-width', colWidths[i]);
+          headerCell.style.width = colWidths[i];
+          headerCell.style.flex = `0 0 ${colWidths[i]}`;
+        }
         headerCell.textContent = header;
         headerRow.appendChild(headerCell);
       });
@@ -32,7 +46,23 @@ function convertTablesToGrids(containerSelector) {
       cells.forEach((cell, i) => {
         const cellDiv = document.createElement('div');
         cellDiv.className = 'grid-cell';
-        if (colClasses[i]) cellDiv.classList.add(...colClasses[i].split(/\s+/));
+        // Copy over all classes from the original cell (except col-XX, which is handled below)
+        cell.classList.forEach(cls => {
+          if (!/^col-\d{1,3}$/.test(cls) && cls !== 'col-auto') {
+            cellDiv.classList.add(cls);
+          }
+        });
+        // Also copy col-XX and col-auto classes for width utility
+        cell.classList.forEach(cls => {
+          if (/^col-\d{1,3}$/.test(cls) || cls === 'col-auto') {
+            cellDiv.classList.add(cls);
+          }
+        });
+        if (colWidths[i]) {
+          cellDiv.setAttribute('data-col-width', colWidths[i]);
+          cellDiv.style.width = colWidths[i];
+          cellDiv.style.flex = `0 0 ${colWidths[i]}`;
+        }
         // Copy all child nodes (including images, not just text)
         Array.from(cell.childNodes).forEach(node => {
           cellDiv.appendChild(node.cloneNode(true));
