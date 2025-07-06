@@ -220,6 +220,15 @@ table.responsive-table tr > * {
   border-right: none;
 }
 
+td img,
+.grid-cell img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Fallback for browsers that do not support attr() for width: set inline style in JS if needed */
 
 @media (max-width: 37.5rem) {
@@ -278,5 +287,66 @@ table.responsive-table tr > * {
     width: 100% !important;
     max-width: 100% !important;
     flex: 1 1 100% !important;
+  }
+  .grid-cell img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* Card grid styles for table-to-card conversion */
+.responsive-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
+}
+.card {
+  background: var(--color-table-bg);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-table-border);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  padding: 1.25rem 1rem 1rem 1rem;
+  min-width: 16rem;
+  max-width: 100%;
+  flex: 1 1 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover, .card:focus-within {
+  border-color: var(--color-btn-hover-bg);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+}
+.card-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  word-break: break-word;
+}
+.card-label {
+  font-size: 0.7em;
+  color: var(--color-th-text);
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+@media (max-width: 37.5rem) {
+  .responsive-card-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .card {
+    min-width: 0;
+    width: 100%;
+    padding: 1rem 0.75rem;
+    border-radius: var(--border-radius-lg);
   }
 }

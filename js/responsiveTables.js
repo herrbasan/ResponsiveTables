@@ -79,3 +79,51 @@ function convertTablesToGrids(containerSelector) {
     table.parentNode.replaceChild(grid, table);
   });
 }
+
+// Convert a table with class 'responsive-table' into a flex card grid
+function convertTableToCards(table) {
+  if (!table || !table.classList.contains('responsive-table')) return;
+  const cardGrid = document.createElement('div');
+  cardGrid.className = 'responsive-card-grid';
+
+  // Get headers (if any)
+  const ths = Array.from(table.querySelectorAll('thead th'));
+  const headers = ths.map(th => th.textContent);
+
+  // Get rows
+  const rows = Array.from(table.querySelectorAll('tbody tr'));
+  rows.forEach(row => {
+    const cells = Array.from(row.children);
+    const card = document.createElement('div');
+    card.className = 'card';
+    cells.forEach((cell, i) => {
+      const cardField = document.createElement('div');
+      cardField.className = 'card-field';
+      // Copy all classes from cell to cardField
+      cell.classList.forEach(cls => cardField.classList.add(cls));
+      // Add label if headers exist
+      if (headers[i]) {
+        const label = document.createElement('div');
+        label.className = 'card-label';
+        label.textContent = headers[i];
+        cardField.appendChild(label);
+      }
+      // Copy all child nodes (including images, not just text)
+      Array.from(cell.childNodes).forEach(node => {
+        cardField.appendChild(node.cloneNode(true));
+      });
+      card.appendChild(cardField);
+    });
+    cardGrid.appendChild(card);
+  });
+  // Replace table with card grid
+  table.parentNode.replaceChild(cardGrid, table);
+}
+
+// Convert all tables with class 'responsive-table' in a container to card grids
+function convertTablesToCards(containerSelector) {
+  const container = typeof containerSelector === 'string' ? document.querySelector(containerSelector) : containerSelector;
+  if (!container) return;
+  const tables = container.querySelectorAll('table.responsive-table');
+  tables.forEach(table => convertTableToCards(table));
+}
