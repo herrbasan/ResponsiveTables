@@ -142,6 +142,29 @@ button:hover, button:focus {
 .col-100 { width: 100%; flex: 0 0 100%; }
 .col-auto { width: auto; flex: 1 1 0; }
 
+/* Responsive grid column width classes (for .grid-header-cell and .grid-cell) */
+.responsive-grid .grid-header-cell.col-5, .responsive-grid .grid-cell.col-5 { width: 5%; flex: 0 0 5%; }
+.responsive-grid .grid-header-cell.col-10, .responsive-grid .grid-cell.col-10 { width: 10%; flex: 0 0 10%; }
+.responsive-grid .grid-header-cell.col-15, .responsive-grid .grid-cell.col-15 { width: 15%; flex: 0 0 15%; }
+.responsive-grid .grid-header-cell.col-20, .responsive-grid .grid-cell.col-20 { width: 20%; flex: 0 0 20%; }
+.responsive-grid .grid-header-cell.col-25, .responsive-grid .grid-cell.col-25 { width: 25%; flex: 0 0 25%; }
+.responsive-grid .grid-header-cell.col-30, .responsive-grid .grid-cell.col-30 { width: 30%; flex: 0 0 30%; }
+.responsive-grid .grid-header-cell.col-35, .responsive-grid .grid-cell.col-35 { width: 35%; flex: 0 0 35%; }
+.responsive-grid .grid-header-cell.col-40, .responsive-grid .grid-cell.col-40 { width: 40%; flex: 0 0 40%; }
+.responsive-grid .grid-header-cell.col-45, .responsive-grid .grid-cell.col-45 { width: 45%; flex: 0 0 45%; }
+.responsive-grid .grid-header-cell.col-50, .responsive-grid .grid-cell.col-50 { width: 50%; flex: 0 0 50%; }
+.responsive-grid .grid-header-cell.col-55, .responsive-grid .grid-cell.col-55 { width: 55%; flex: 0 0 55%; }
+.responsive-grid .grid-header-cell.col-60, .responsive-grid .grid-cell.col-60 { width: 60%; flex: 0 0 60%; }
+.responsive-grid .grid-header-cell.col-65, .responsive-grid .grid-cell.col-65 { width: 65%; flex: 0 0 65%; }
+.responsive-grid .grid-header-cell.col-70, .responsive-grid .grid-cell.col-70 { width: 70%; flex: 0 0 70%; }
+.responsive-grid .grid-header-cell.col-75, .responsive-grid .grid-cell.col-75 { width: 75%; flex: 0 0 75%; }
+.responsive-grid .grid-header-cell.col-80, .responsive-grid .grid-cell.col-80 { width: 80%; flex: 0 0 80%; }
+.responsive-grid .grid-header-cell.col-85, .responsive-grid .grid-cell.col-85 { width: 85%; flex: 0 0 85%; }
+.responsive-grid .grid-header-cell.col-90, .responsive-grid .grid-cell.col-90 { width: 90%; flex: 0 0 90%; }
+.responsive-grid .grid-header-cell.col-95, .responsive-grid .grid-cell.col-95 { width: 95%; flex: 0 0 95%; }
+.responsive-grid .grid-header-cell.col-100, .responsive-grid .grid-cell.col-100 { width: 100%; flex: 0 0 100%; }
+.responsive-grid .grid-header-cell.col-auto, .responsive-grid .grid-cell.col-auto { width: auto; flex: 1 1 0; }
+
 /* Utility alignment classes */
 .align-both {
   text-align: center !important;
