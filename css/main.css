@@ -119,6 +119,19 @@ button:hover, button:focus {
   outline: none;
 }
 
+/* Visually hidden, accessible only to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Utility column width classes (5% to 100% in 5% steps) */
 .col-5 { width: 5%; flex: 0 0 5%; }
 .col-10 { width: 10%; flex: 0 0 10%; }

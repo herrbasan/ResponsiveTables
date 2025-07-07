@@ -68,12 +68,18 @@ function convertTableToCustomLayout(table, layout) {
       }
       // For card layout, add label if headers exist
       if (classes.label && headers[i]) {
-        // Use data-label for mobile label generation
         cellLi.setAttribute('data-label', headers[i]);
       }
       // For grid layout, add data-label for mobile if headers exist
       if (classes.headerRow && headers[i]) {
         cellLi.setAttribute('data-label', headers[i]);
+      }
+      // Accessibility: add visually hidden label span
+      if (headers[i]) {
+        const srLabel = document.createElement('span');
+        srLabel.className = 'sr-only';
+        srLabel.textContent = headers[i] + ': ';
+        cellLi.appendChild(srLabel);
       }
       // Copy all child nodes
       Array.from(cell.childNodes).forEach(node => {
