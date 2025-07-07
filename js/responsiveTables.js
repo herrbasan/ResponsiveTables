@@ -1,122 +1,98 @@
-// Convert all tables with class 'responsive-table' in a container to responsive grid divs
-function convertTablesToGrids(containerSelector) {
-  const container = typeof containerSelector === 'string' ? document.querySelector(containerSelector) : containerSelector;
-  if (!container) return;
-  const tables = container.querySelectorAll('table.responsive-table');
-  tables.forEach(table => convertTableToGrid(table));
+// Utility config objects for grid and card layouts
+const GRID_LAYOUT_CLASSES = {
+  container: 'responsive-grid',
+  headerRow: 'grid-header',
+  headerCell: 'grid-header-cell',
+  row: 'grid-row',
+  cell: 'grid-cell',
+  field: null,
+  label: null
+};
+
+// Entry point utility functions for grid and card layouts
+function tablesToGrid(containerSelector) {
+  convertTablesToLayout(containerSelector, GRID_LAYOUT_CLASSES);
 }
 
-// Convert a single table with class 'responsive-table' to a responsive grid div
-function convertTableToGrid(table) {
+// Generalized function to convert a table to a custom layout using nested ul/li
+function convertTableToCustomLayout(table, layout) {
   if (!table || !table.classList.contains('responsive-table')) return;
-  const grid = document.createElement('div');
-  grid.className = 'responsive-grid';
+  const classes = typeof layout === 'function' ? layout() : layout;
+  const containerUl = document.createElement('ul');
+  containerUl.className = classes.container;
 
   const ths = Array.from(table.querySelectorAll('thead th'));
   const headers = ths.map(th => th.textContent);
-
   const colWidths = ths.map(th => {
     const match = th.className && th.className.match(/col-(\d{1,3})/);
     if (match) return 'col-' + match[1];
     if (th.classList.contains('col-auto')) return 'col-auto';
     return '';
   });
-  // Create header row if headers exist
-  if (headers.length > 0) {
-    const headerRow = document.createElement('div');
-    headerRow.className = 'grid-header';
+
+  // Header row (for grid only)
+  if (classes.headerRow && headers.length > 0) {
+    const headerRow = document.createElement('li');
+    headerRow.className = classes.headerRow;
+    const headerUl = document.createElement('ul');
     headers.forEach((header, i) => {
-      const headerCell = document.createElement('div');
-      headerCell.className = 'grid-header-cell';
-      if (colWidths[i]) {
-        headerCell.classList.add(colWidths[i]);
-      }
-      headerCell.textContent = header;
-      headerRow.appendChild(headerCell);
+      const headerCellLi = document.createElement('li');
+      headerCellLi.className = classes.headerCell;
+      if (colWidths[i]) headerCellLi.classList.add(colWidths[i]);
+      headerCellLi.textContent = header;
+      headerUl.appendChild(headerCellLi);
     });
-    grid.appendChild(headerRow);
+    headerRow.appendChild(headerUl);
+    containerUl.appendChild(headerRow);
   }
+
   // Get rows
   const rows = Array.from(table.querySelectorAll('tbody tr'));
   rows.forEach(row => {
     const cells = Array.from(row.children);
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'grid-row';
+    const rowLi = document.createElement('li');
+    rowLi.className = classes.row;
+    const cellUl = document.createElement('ul');
     cells.forEach((cell, i) => {
-      const cellDiv = document.createElement('div');
-      cellDiv.className = 'grid-cell';
-      // Copy over all classes from the original cell (except col-XX, which is handled below)
+      const cellLi = document.createElement('li');
+      cellLi.className = classes.cell;
+      // Copy all classes from the original cell except col-x/col-auto (handled below)
       cell.classList.forEach(cls => {
         if (!/^col-\d{1,3}$/.test(cls) && cls !== 'col-auto') {
-          cellDiv.classList.add(cls);
+          cellLi.classList.add(cls);
         }
       });
-      // Add col-XX or col-auto class from header if present
-      if (colWidths[i]) {
-        cellDiv.classList.add(colWidths[i]);
+      // Add col-x or col-auto class from header if present (for grid)
+      if (colWidths[i] && classes.headerRow) {
+        cellLi.classList.add(colWidths[i]);
       }
-      // Copy all child nodes (including images, not just text)
+      // For card layout, add label if headers exist
+      if (classes.label && headers[i]) {
+        // Use data-label for mobile label generation
+        cellLi.setAttribute('data-label', headers[i]);
+      }
+      // For grid layout, add data-label for mobile if headers exist
+      if (classes.headerRow && headers[i]) {
+        cellLi.setAttribute('data-label', headers[i]);
+      }
+      // Copy all child nodes
       Array.from(cell.childNodes).forEach(node => {
-        cellDiv.appendChild(node.cloneNode(true));
+        cellLi.appendChild(node.cloneNode(true));
       });
-      // For mobile: add data-label for CSS ::before only if headers exist
-      if (headers[i]) {
-        cellDiv.setAttribute('data-label', headers[i]);
-      }
-      rowDiv.appendChild(cellDiv);
+      cellUl.appendChild(cellLi);
     });
-    grid.appendChild(rowDiv);
+    rowLi.appendChild(cellUl);
+    containerUl.appendChild(rowLi);
   });
-  // Replace table with grid
-  table.parentNode.replaceChild(grid, table);
+
+  table.parentNode.replaceChild(containerUl, table);
 }
 
-// Convert all tables with class 'responsive-table' in a container to card grids
-function convertTablesToCards(containerSelector) {
+// Generalized function to convert all tables in a container to a custom layout
+function convertTablesToLayout(containerSelector, layoutClasses) {
   const container = typeof containerSelector === 'string' ? document.querySelector(containerSelector) : containerSelector;
   if (!container) return;
   const tables = container.querySelectorAll('table.responsive-table');
-  tables.forEach(table => convertTableToCards(table));
+  tables.forEach(table => convertTableToCustomLayout(table, layoutClasses));
 }
-
-// Convert a table with class 'responsive-table' into a flex card grid
-function convertTableToCards(table) {
-  if (!table || !table.classList.contains('responsive-table')) return;
-  const cardGrid = document.createElement('div');
-  cardGrid.className = 'responsive-card-grid';
-
-  // Get headers (if any)
-  const ths = Array.from(table.querySelectorAll('thead th'));
-  const headers = ths.map(th => th.textContent);
-
-  // Get rows
-  const rows = Array.from(table.querySelectorAll('tbody tr'));
-  rows.forEach(row => {
-    const cells = Array.from(row.children);
-    const card = document.createElement('div');
-    card.className = 'card';
-    cells.forEach((cell, i) => {
-      const cardField = document.createElement('div');
-      cardField.className = 'card-field';
-      // Copy all classes from cell to cardField
-      cell.classList.forEach(cls => cardField.classList.add(cls));
-      // Add label if headers exist
-      if (headers[i]) {
-        const label = document.createElement('div');
-        label.className = 'card-label';
-        label.textContent = headers[i];
-        cardField.appendChild(label);
-      }
-      // Copy all child nodes (including images, not just text)
-      Array.from(cell.childNodes).forEach(node => {
-        cardField.appendChild(node.cloneNode(true));
-      });
-      card.appendChild(cardField);
-    });
-    cardGrid.appendChild(card);
-  });
-  // Replace table with card grid
-  table.parentNode.replaceChild(cardGrid, table);
-}
-
 

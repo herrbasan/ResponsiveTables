@@ -186,7 +186,7 @@ table.responsive-table tr > * {
   width: unset;
 }
 
-/* Responsive grid table styles */
+/* Responsive grid table styles for ul/li structure */
 .responsive-grid {
   display: flex;
   flex-direction: column;
@@ -196,34 +196,8 @@ table.responsive-table tr > * {
   border-radius: var(--border-radius);
   overflow: hidden;
   margin-bottom: 2rem;
-}
-
-.grid-row {
-  display: flex;
-  flex-direction: row;
-  border-bottom: var(--border-width-thin) solid var(--color-table-border);
-}
-.grid-row:last-child {
-  border-bottom: none;
-}
-.grid-cell {
-  flex: 1 1 0;
-  padding: 0.5rem;
-  border-right: var(--border-width-thin) solid var(--color-table-border);
-  display: flex;
-  flex-direction: column;
-}
-.grid-cell:last-child {
-  border-right: none;
-}
-.cell-label {
-  font-size: 0.6rem;
-  color: var(--color-th-text);
-  font-weight: bold;
-  margin-bottom: 0.125rem;
-}
-.cell-value {
-  font-size: 1em;
+  list-style: none;
+  padding: 0;
 }
 .grid-header {
   display: flex;
@@ -232,86 +206,137 @@ table.responsive-table tr > * {
   color: var(--color-th-text);
   font-weight: bold;
   border-bottom: var(--border-width) solid var(--color-table-border);
+  list-style: none;
+  padding: 0;
+}
+.grid-header > ul {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .grid-header-cell {
   flex: 1 1 0;
   padding: 0.5rem;
   border-right: var(--border-width) solid var(--color-table-border);
   text-align: left;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  box-sizing: border-box;
 }
 .grid-header-cell:last-child {
   border-right: none;
 }
-
-td img,
+.grid-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: var(--border-width-thin) solid var(--color-table-border);
+  list-style: none;
+  padding: 0;
+}
+.grid-row:last-child {
+  border-bottom: none;
+}
+.grid-row > ul {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.grid-cell {
+  flex: 1 1 0;
+  padding: 0.5rem;
+  border-right: var(--border-width-thin) solid var(--color-table-border);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-sizing: border-box;
+}
+.grid-cell:last-child {
+  border-right: none;
+}
 .grid-cell img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
   aspect-ratio: 1 / 1;
   display: block;
   margin: 0 auto;
 }
+.grid-cell::before {
+  content: attr(data-label);
+  display: none;
+  font-weight: 500;
+  color: var(--color-th-text);
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
 
-/* Fallback for browsers that do not support attr() for width: set inline style in JS if needed */
-
+/* Mobile styles for ul/li grid structure */
 @media (max-width: 37.5rem) {
-  main {
-    padding: 0.75rem;
+  .responsive-grid,
+  .responsive-grid ul,
+  .responsive-grid li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
   .responsive-grid {
     border-radius: 0;
     background: none;
   }
-  .grid-header {
+  .responsive-grid .grid-header {
     display: none;
   }
-  .grid-row {
-    flex-direction: column;
+  .responsive-grid .grid-row {
+    display: block;
     border: none;
     background: var(--color-table-bg);
     margin-bottom: 1rem;
     border-radius: var(--border-radius-lg);
     border: var(--border-width-thin) solid var(--color-table-border);
     overflow: hidden;
+    box-shadow: none;
+    padding: 0;
   }
-  .grid-cell {
-    border-right: none;
-    border-bottom: var(--border-width-thin) solid var(--color-table-border);
+  .responsive-grid .grid-row > ul {
+    display: block;
+    flex-direction: unset;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .responsive-grid .grid-row .grid-cell {
+    display: block;
+    border: none;
+    border: var(--border-width-thin) solid var(--color-table-border);
+    border-radius: 0;
     padding: 0.625rem 0.5rem;
-    position: relative;
     color: var(--color-text);
     font-size: 1.05em;
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 1 1 100% !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: none;
   }
-  .grid-cell[class*="col-"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 1 1 100% !important;
-  }
-  .grid-cell:last-child {
+  .responsive-grid .grid-row .grid-cell:last-child {
     border-bottom: none;
   }
-  .grid-cell::before {
-    content: attr(data-label);
+  .responsive-grid .grid-row .grid-cell::before {
     display: block;
-    font-weight: 500;
-    color: var(--color-th-text);
-    opacity: 0.7;
-    margin-bottom: 0.125rem;
-    font-size: 0.92em;
   }
-  .cell-label {
-    margin-bottom: 0.25rem;
-    font-size: 1em;
+  .responsive-grid .grid-row .grid-cell[class*="col-"] {
+    width: 100%;
+    max-width: 100%;
   }
-  .grid-header-cell[class*="col-"], .grid-cell[class*="col-"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex: 1 1 100% !important;
+  .responsive-grid .grid-row .grid-header-cell[class*="col-"], .grid-cell[class*="col-"] {
+    width: 100%;
+    max-width: 100%;
   }
-  .grid-cell img {
+  .responsive-grid .grid-row .grid-cell img {
     width: 100%;
     aspect-ratio: 1 / 1;
     display: block;
