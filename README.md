@@ -2,4 +2,4 @@ Playground testing out methods to upgrade html table/row/cell structures to mode
 
 Demo: https://herrbasan.github.io/ResponsiveTables/
 
-Demo (flex cards): https://herrbasan.github.io/ResponsiveTables/flex.html
+Note: Removed the Flex Cards thing, as it's just a different styling option.
