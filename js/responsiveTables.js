@@ -30,14 +30,26 @@ function convertTableToCustomLayout(table, layout) {
     return '';
   });
 
+  // Get rows
+  const rows = Array.from(table.querySelectorAll('tbody tr'));
+  containerUl.setAttribute('role', 'table');
+  containerUl.setAttribute('aria-rowcount', rows.length);
+  containerUl.setAttribute('aria-colcount', headers.length);
+
   // Header row (for grid only)
   if (classes.headerRow && headers.length > 0) {
     const headerRow = document.createElement('li');
     headerRow.className = classes.headerRow;
+    headerRow.setAttribute('role', 'row');
+    headerRow.setAttribute('aria-rowindex', 1);
+    headerRow.setAttribute('aria-hidden', 'true'); // Make header row aria-hidden
     const headerUl = document.createElement('ul');
+    headerUl.setAttribute('role', 'rowgroup');
     headers.forEach((header, i) => {
       const headerCellLi = document.createElement('li');
       headerCellLi.className = classes.headerCell;
+      headerCellLi.setAttribute('role', 'columnheader');
+      headerCellLi.setAttribute('aria-colindex', i + 1);
       if (colWidths[i]) headerCellLi.classList.add(colWidths[i]);
       headerCellLi.textContent = header;
       headerUl.appendChild(headerCellLi);
@@ -46,16 +58,20 @@ function convertTableToCustomLayout(table, layout) {
     containerUl.appendChild(headerRow);
   }
 
-  // Get rows
-  const rows = Array.from(table.querySelectorAll('tbody tr'));
-  rows.forEach(row => {
+  rows.forEach((row, rowIdx) => {
     const cells = Array.from(row.children);
     const rowLi = document.createElement('li');
     rowLi.className = classes.row;
+    rowLi.setAttribute('role', 'row');
+    // If header exists, aria-rowindex starts at 1 for first data row (header is aria-hidden)
+    rowLi.setAttribute('aria-rowindex', rowIdx + 1);
     const cellUl = document.createElement('ul');
+    cellUl.setAttribute('role', 'rowgroup');
     cells.forEach((cell, i) => {
       const cellLi = document.createElement('li');
       cellLi.className = classes.cell;
+      cellLi.setAttribute('role', 'cell');
+      cellLi.setAttribute('aria-colindex', i + 1);
       // Copy all classes from the original cell except col-x/col-auto (handled below)
       cell.classList.forEach(cls => {
         if (!/^col-\d{1,3}$/.test(cls) && cls !== 'col-auto') {
@@ -66,22 +82,18 @@ function convertTableToCustomLayout(table, layout) {
       if (colWidths[i] && classes.headerRow) {
         cellLi.classList.add(colWidths[i]);
       }
-      // For card layout, add label if headers exist
       if (classes.label && headers[i]) {
         cellLi.setAttribute('data-label', headers[i]);
       }
-      // For grid layout, add data-label for mobile if headers exist
       if (classes.headerRow && headers[i]) {
         cellLi.setAttribute('data-label', headers[i]);
       }
-      // Accessibility: add visually hidden label span
       if (headers[i]) {
         const srLabel = document.createElement('span');
         srLabel.className = 'sr-only';
         srLabel.textContent = headers[i] + ': ';
         cellLi.appendChild(srLabel);
       }
-      // Copy all child nodes
       Array.from(cell.childNodes).forEach(node => {
         cellLi.appendChild(node.cloneNode(true));
       });
