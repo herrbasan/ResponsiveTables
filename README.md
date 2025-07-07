@@ -2,8 +2,5 @@ Playground testing out methods to upgrade html table/row/cell structures to mode
 
 Demo: https://herrbasan.github.io/ResponsiveTables/
 
-Note: Removed the Flex Cards thing, as it's just a different styling option.
-
-
-Research:
-https://adrianroselli.com/2017/11/a-responsive-accessible-table.html#Example
+Note: Complete rework, much much simpler and yet more accessible, as the standard behaviour of tables is actually good in terms of accessibility.
+Removed the old approach into the archive_unused folder.
