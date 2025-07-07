@@ -267,7 +267,7 @@ table.responsive-table tr > * {
   margin: 0 auto;
 }
 .grid-cell::before {
-  content: attr(data-label);
+  content: attr(data-label)" ";
   display: none;
   font-weight: 500;
   color: var(--color-th-text);
