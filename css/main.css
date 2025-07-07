@@ -393,7 +393,7 @@ table.responsive-table tr > * {
   .enhanced-table td:before {
     display: block;
     width: 100%;
-    content: attr(data-label);
+    content: attr(data-label) / " ";
   }
 }
 
