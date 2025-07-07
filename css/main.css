@@ -357,57 +357,116 @@ table.responsive-table tr > * {
   }
 }
 
-/* Card grid styles for table-to-card conversion */
-.responsive-card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  width: 100%;
-  margin-bottom: 2rem;
-  justify-content: flex-start;
-}
-.card {
-  background: var(--color-table-bg);
-  color: var(--color-text);
-  border: var(--border-width) solid var(--color-table-border);
-  border-radius: var(--border-radius);
-  box-shadow: none;
-  padding: 1.25rem 1rem 1rem 1rem;
-  min-width: 16rem;
-  max-width: 100%;
-  flex: 1 1 10rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.card:hover, .card:focus-within {
-  border-color: var(--color-btn-hover-bg);
-  box-shadow: 0 2px 15px rgba(0,0,0,0.2);
-}
-.card-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  word-break: break-word;
-}
-.card-label {
-  font-size: 0.7em;
-  color: var(--color-th-text);
-  font-weight: 500;
-  opacity: 0.5;
+/* Scoped mobile table styles for .enhanced-table */
+@media (max-width: 600px) {
+  .enhanced-table,
+  .enhanced-table thead,
+  .enhanced-table tbody,
+  .enhanced-table th,
+  .enhanced-table td,
+  .enhanced-table tr {
+    display: block;
+  }
+  .enhanced-table thead tr {
+    position: absolute;
+    overflow: hidden;
+    height: 0;
+  }
+  .enhanced-table tr { border: 1px solid #ccc; }
+  .enhanced-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+  .enhanced-table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  /* Remove hardcoded labels, use data-label instead */
+  .enhanced-table td:before {
+    display: block;
+    width: 100%;
+    content: attr(data-label);
+  }
 }
 
+/* Enhanced Table: Mirror grid layout for mobile */
 @media (max-width: 37.5rem) {
-  .responsive-card-grid {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .card {
-    min-width: 0;
+  .enhanced-table,
+  .enhanced-table thead,
+  .enhanced-table tbody,
+  .enhanced-table th,
+  .enhanced-table td,
+  .enhanced-table tr {
+    display: block;
     width: 100%;
-    padding: 1rem 0.75rem;
+    box-sizing: border-box;
+    background-color: unset;
+  }
+  .enhanced-table thead tr {
+    display: none;
+  }
+  .enhanced-table tr {
+    background: var(--color-table-bg);
+    margin-bottom: 1rem;
     border-radius: var(--border-radius-lg);
+    border: var(--border-width-thin) solid var(--color-table-border);
+    overflow: hidden;
+    box-shadow: none;
+    padding: 0;
+  }
+  .enhanced-table td {
+    border: none;
+    border-bottom: var(--border-width-thin) solid var(--color-table-border);
+    border-radius: 0;
+    padding:0.5rem;
+    color: var(--color-text);
+    font-size: 1.05em;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: none;
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+  .enhanced-table td:last-child {
+    border-bottom: none;
+  }
+  .enhanced-table td:before {
+    display: block;
+    position: static;
+    width: 100%;
+    margin-bottom: 0.25em;
+    padding: 0;
+    white-space: normal;
+    text-align: left;
+    font-weight: 500;
+    color: var(--color-th-text);
+    opacity: 0.5;
+    font-size: 0.8rem;
+    content: attr(data-label);
+    box-sizing: border-box;
+  }
+  .enhanced-table td > * {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .enhanced-table td img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    margin: 0 auto;
   }
 }
