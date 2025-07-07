@@ -411,7 +411,9 @@ table.responsive-table tr > * {
     background-color: unset;
   }
   .enhanced-table thead tr {
-    display: none;
+    position: absolute;
+    overflow: hidden;
+    height: 0;
   }
   .enhanced-table tr {
     background: var(--color-table-bg);
