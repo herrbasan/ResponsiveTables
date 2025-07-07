@@ -414,6 +414,7 @@ table.responsive-table tr > * {
     position: absolute;
     overflow: hidden;
     height: 0;
+    border: none;
   }
   .enhanced-table tr {
     background: var(--color-table-bg);
