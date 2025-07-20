@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Tables</title>
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js"></script>
-    <script src="js/responsiveTables.js"></script>
+    <script src="js/main.js" type="module"></script>
 </head>
 <body>
     <header>
         <h1>Responsive Tables Example</h1>
-        <button id="theme-toggle" aria-label="Toggle light/dark mode" onclick="toggleTheme()">Toggle Theme</button>
-        <button id="enhance-tables" aria-label="Enhance Tables" onclick="addDataLabelsToAllTables('main section')">Enhance Tables</button>
+        <button id="theme-toggle-button" aria-label="Toggle light/dark mode">Toggle Theme</button>
+        <button id="enhance-tables-button" aria-label="Enhance Tables">Enhance Tables</button>
     </header>
     <main>
         <section>
             <h2>Table 1: Basic Data</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -45,7 +44,7 @@
             </table>
 
             <h2>Table 2: Four Columns with Long Text</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th class="col-5">ID</th>
@@ -77,7 +76,7 @@
             </table>
 
             <h2>Table 3: Two Columns</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th>Country</th>
@@ -101,7 +100,7 @@
             </table>
 
             <h2>Table 4: Four Columns</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -133,7 +132,7 @@
             </table>
 
             <h2>Table 5: Five Columns</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th>Order</th>
@@ -169,7 +168,7 @@
             </table>
 
             <h2>Table 6: No Thead Example</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <tbody>
                     <tr>
                         <td>Red</td>
@@ -187,7 +186,7 @@
             </table>
 
             <h2>Table 7: Image Gallery with Thead</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <thead>
                     <tr>
                         <th>Image 1</th>
@@ -215,7 +214,7 @@
             </table>
 
             <h2>Table 8: Image Gallery, No Thead</h2>
-            <table class="responsive-table">
+            <table class="responsive-table-enhance">
                 <tbody>
                     <tr>
                         <td class="align-both"><img src="https://picsum.photos/seed/10/256/256" alt="Gallery 10"></td>
@@ -235,7 +234,7 @@
                 </tbody>
             </table>
         </section>
-</main>
+    </main>
     <footer>
         <p>View Source on <a href="https://github.com/herrbasan/ResponsiveTables">GitHub</a></p>
     </footer>
