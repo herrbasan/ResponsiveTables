@@ -4,7 +4,6 @@ import { ut, enhanceAllTables } from './responsiveTables.js';
 
 let g = {};
 
-
 checkSetTheme('#theme-toggle-button');
 function checkSetTheme(toggle_element) {
 	const root = document.documentElement;

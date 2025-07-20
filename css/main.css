@@ -24,19 +24,19 @@
 }
 
 :root[data-theme="dark"] {
-  --color-bg: rgb(24, 26, 27);
+  --color-bg: rgb(40, 40, 40);
   --color-text: rgb(224, 224, 224);
-  --color-table-bg: rgb(35, 39, 43);
+  --color-table-bg: rgb(45, 45, 45);
   --color-table-border: rgb(64, 64, 64);
-  --color-th-bg: rgb(45, 49, 54);
+  --color-th-bg: rgb(53, 53, 53);
   --color-th-text: rgb(224, 224, 224);
-  --color-header-bg: rgb(65, 65, 65);
+  --color-header-bg: rgb(53, 53, 53);
   --color-header-text: rgb(224, 224, 224);
   --color-header-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  --color-btn-bg: rgb(44, 48, 54);
+  --color-btn-bg: rgb(65, 65, 65);
   --color-btn-text: rgb(224, 224, 224);
-  --color-btn-border: rgb(70, 70, 70);
-  --color-btn-hover-bg: rgb(60, 65, 75);
+  --color-btn-border: rgb(80, 80, 80);
+  --color-btn-hover-bg: rgb(80, 80, 80);
 }
 
 h1, h2, h3, h4, h5, h6 {
