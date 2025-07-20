@@ -13,6 +13,8 @@ function enhanceTable(table) {
 	const ths = Array.from(table.querySelectorAll('thead th'));
 	const headers = ths.map(th => th.textContent);
 	const rows = Array.from(table.querySelectorAll('tbody tr'));
+	const totalCells = rows.reduce((sum, row) => sum + row.children.length, 0);
+	let tableCellIndex = 1;
 	rows.forEach(row => {
 		const cells = Array.from(row.children);
 		cells.forEach((cell, i) => {
@@ -20,6 +22,11 @@ function enhanceTable(table) {
 				cell.header_label = headers[i];
 				cell.setAttribute('data-label', headers[i]);
 			}
+			cell.setAttribute('data-row-cell-index', i+1);
+			cell.setAttribute('data-row-cell-total', cells.length);
+			cell.setAttribute('data-table-cell-total', totalCells);
+			cell.setAttribute('data-table-cell-index', tableCellIndex);
+			tableCellIndex++;
 		});
 	});
 }

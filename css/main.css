@@ -132,45 +132,34 @@ button:hover, button:focus {
   outline: none;
 }
 
+.enhanced-table.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: white;
+  border: var(--border-width-thin) solid var(--color-table-border);
+  padding: 1rem;
+}
 
-/* Scoped mobile table styles for .enhanced-table */
-@media (max-width: 600px) {
-  .enhanced-table,
-  .enhanced-table thead,
-  .enhanced-table tbody,
-  .enhanced-table th,
-  .enhanced-table td,
-  .enhanced-table tr {
-    display: block;
-  }
-  .enhanced-table thead tr {
-    position: absolute;
-    overflow: hidden;
-    height: 0;
-  }
-  .enhanced-table tr { border: 1px solid #ccc; }
-  .enhanced-table td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-    text-align: right;
-  }
-  .enhanced-table td:before {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: bold;
-  }
-  /* Remove hardcoded labels, use data-label instead */
-  .enhanced-table td:before {
-    display: block;
-    width: 100%;
-    content: attr(data-label) / " ";
-  }
+.enhanced-table.imageGrid thead,
+.enhanced-table.imageGrid tbody,
+.enhanced-table.imageGrid tr {
+  display: contents;
+}
+
+.enhanced-table.imageGrid td {
+  border: none;
+  padding: 0;
+  flex: 1 1 calc(13rem);
+  min-width: 0;
+}
+
+.enhanced-table.imageGrid td img {
+  width: 100%;
+  height: 100%;
+  max-height: 10rem;
+  object-fit: cover;
+  display: block;
 }
 
 /* Enhanced Table: Mirror grid layout for mobile */
@@ -247,5 +236,6 @@ button:hover, button:focus {
     aspect-ratio: 1 / 1;
     display: block;
     margin: 0 auto;
-  }
+  } 
 }
+
