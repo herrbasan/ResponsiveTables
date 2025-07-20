@@ -23,8 +23,4 @@ function checkSetTheme(toggle_element) {
 
 document.addEventListener('DOMContentLoaded', function () {
 	enhanceAllTables('main section');
-	ut.el('#enhance-tables-button').addEventListener('click', function () {
-		ut.log('Enhancing tables...');
-		enhanceAllTables('main section');
-	});
 });

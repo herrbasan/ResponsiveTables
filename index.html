@@ -10,12 +10,15 @@
 <body>
     <header>
         <h1>Responsive Tables Example</h1>
-        <button id="theme-toggle-button" aria-label="Toggle light/dark mode">Toggle Theme</button>
-        <button id="enhance-tables-button" aria-label="Enhance Tables">Enhance Tables</button>
+        <button id="theme-toggle-button" aria-label="Toggle light/dark mode">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+            </svg>
+        </button>
     </header>
     <main>
         <section>
-            <h2>Table 1: Basic Data</h2>
+            <h2>Basic Data</h2>
             <table class="responsive-table-enhance">
                 <thead>
                     <tr>
@@ -43,7 +46,7 @@
                 </tbody>
             </table>
 
-            <h2>Table 2: Four Columns with Long Text</h2>
+            <h2>Four Columns with Long Text</h2>
             <table class="responsive-table-enhance">
                 <thead>
                     <tr>
@@ -75,63 +78,7 @@
                 </tbody>
             </table>
 
-            <h2>Table 3: Two Columns</h2>
-            <table class="responsive-table-enhance">
-                <thead>
-                    <tr>
-                        <th>Country</th>
-                        <th>Capital</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>France</td>
-                        <td>Paris</td>
-                    </tr>
-                    <tr>
-                        <td>Japan</td>
-                        <td>Tokyo</td>
-                    </tr>
-                    <tr>
-                        <td>Brazil</td>
-                        <td>Brasília</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Table 4: Four Columns</h2>
-            <table class="responsive-table-enhance">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Jane Doe</td>
-                        <td>jane@example.com</td>
-                        <td>Active</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>John Smith</td>
-                        <td>john@example.com</td>
-                        <td>Inactive</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Emily Clark</td>
-                        <td>emily@example.com</td>
-                        <td>Active</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Table 5: Five Columns</h2>
+            <h2>Five Columns</h2>
             <table class="responsive-table-enhance">
                 <thead>
                     <tr>
@@ -167,7 +114,7 @@
                 </tbody>
             </table>
 
-            <h2>Table 6: No Thead Example</h2>
+            <h2>No Thead Example</h2>
             <table class="responsive-table-enhance">
                 <tbody>
                     <tr>
@@ -185,35 +132,7 @@
                 </tbody>
             </table>
 
-            <h2>Table 7: Image Gallery with Thead</h2>
-            <table class="responsive-table-enhance">
-                <thead>
-                    <tr>
-                        <th>Image 1</th>
-                        <th>Image 2</th>
-                        <th>Image 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-both test"><img src="https://picsum.photos/seed/1/256/256" alt="Gallery 1"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/2/256/256" alt="Gallery 2"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/3/256/256" alt="Gallery 3"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-both"><img src="https://picsum.photos/seed/4/256/256" alt="Gallery 4"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/5/256/256" alt="Gallery 5"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/6/256/256" alt="Gallery 6"></td>
-                    </tr>
-                    <tr>
-                        <td class="align-both"><img src="https://picsum.photos/seed/7/256/256" alt="Gallery 7"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/8/256/256" alt="Gallery 8"></td>
-                        <td class="align-both"><img src="https://picsum.photos/seed/9/256/256" alt="Gallery 9"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Table 8: Image Gallery, No Thead</h2>
+            <h2>Image Gallery, Special Grid Layout</h2>
             <table class="responsive-table-enhance imageGrid">
                 <tbody>
                     <tr>
