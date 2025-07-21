@@ -6,6 +6,8 @@
   --color-table-border: rgb(200, 200, 200);
   --color-th-bg: rgb(220, 220, 220);
   --color-th-text: rgb(34, 34, 34);
+  --color-tfoot-bg: rgb(199, 234, 213);
+  --color-tfoot-text: rgb(34, 34, 34);
   --color-header-bg: rgb(96, 96, 96);
   --color-header-text: rgb(255, 255, 255);
   --color-header-shadow: 0 0 1rem rgba(0,0,0,0.2);
@@ -31,6 +33,8 @@
   --color-table-border: rgb(64, 64, 64);
   --color-th-bg: rgb(53, 53, 53);
   --color-th-text: rgb(224, 224, 224);
+  --color-tfoot-bg: rgb(56, 69, 61);
+  --color-tfoot-text: rgb(255, 255, 255);
   --color-header-bg: rgb(53, 53, 53);
   --color-header-text: rgb(224, 224, 224);
   --color-header-shadow: 0 0 1rem rgba(0,0,0,0.2);
@@ -78,7 +82,7 @@ table.responsive-table {
   table-layout: fixed;
 }
 
-th, td {
+th, td, tfoot {
   border: var(--border-width-thin) solid var(--color-table-border);
   padding: var(--space-cell-padding);
   text-align: left;
@@ -92,6 +96,12 @@ th, td {
 th {
   background-color: var(--color-th-bg);
   color: var(--color-th-text);
+}
+
+tfoot {
+  background-color: var(--color-tfoot-bg);
+  color: var(--color-tfoot-text);
+  font-weight: bold;
 }
 
 main {
@@ -211,7 +221,7 @@ button:hover, button:focus {
     box-sizing: border-box;
     background-color: unset;
   }
-  .enhanced-table thead tr {
+  .enhanced-table thead tr{
     position: absolute;
     overflow: hidden;
     height: 0;
@@ -267,11 +277,32 @@ button:hover, button:focus {
     max-width: 100%;
     box-sizing: border-box;
   }
-  .enhanced-table td img {
+  .enhanced-table tfoot tr {
+    margin: 0;
+  }
+  .enhanced-table tfoot {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    background-color: var(--color-tfoot-bg);
+    color: var(--color-tfoot-text);
+  }
+  .enhanced-table tfoot td {
+    border: none;
+    padding: 0.5rem;
+    background-color: var(--color-tfoot-bg);
+    color: var(--color-tfoot-text);
+    font-weight: bold;
+  }
+  .enhanced-table tfoot > td:before {
+    display: none;
+  }
+  /*.enhanced-table td img {
     width: 100%;
     aspect-ratio: 1 / 1;
     display: block;
     margin: 0 auto;
-  } 
+  } */
 }
 
